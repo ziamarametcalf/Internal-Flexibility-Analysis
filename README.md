@@ -11,6 +11,8 @@ This project analyzes conformational flexibility in HIV-1 TAR RNA across multipl
 main=codes
 pdb=files and trimmed ones
 results=results and data
+dssr=manuAL AND USED LINES
+ogrmsd-preliminary pymol codes and results
 
 ## 🛠️ Tools Used
 - **DSSR / x3DNA** – Backbone torsion extraction
