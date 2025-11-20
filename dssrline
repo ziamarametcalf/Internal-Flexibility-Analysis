@@ -1,0 +1,4 @@
+for %f in (2kdq_model*.pdb) do x3dna-dssr -i=%f -o=2kdqtorsions\%~nf.out --torsion360 --prefix=2kdqtorsions\%~nf
+
+##For running dssr torsions multiple files
+
