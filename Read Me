@@ -1,0 +1,37 @@
+## Used Pymol
+python
+from pymol import cmd
+
+for i in range(1, 21):
+    cmd.create(f"conf_{i}", "1anr", i, 1)
+python end
+
+For renaming states
+
+python
+from pymol import cmd
+
+# RNA backbone atom names (covers both OP1/OP2 and O1P/O2P)
+backbone = "name P+O5'+C5'+C4'+C3'+O3'+O1P+O2P+OP1+OP2"
+
+# Create conf_1..conf_20 from multi-state '1anr' and trim each
+for i in range(1, 21):
+    obj = f"conf_{i}"
+    cmd.create(obj, "1anr", i, 1)  # copy state i of 1anr -> state 1 of conf_i
+    cmd.remove(f"{obj} and not (resi 19-43 and ({backbone}))")
+    if cmd.count_atoms(obj) == 0:
+        print(f"[WARN] {obj} is empty after trimming (check numbering).")
+
+# (Optional) also make a trimmed reference copy if you have 'ref' loaded
+if cmd.count_atoms("ref") > 0:
+    cmd.create("ref_core", f"ref and (resi 19-43 and ({backbone}))")
+    if cmd.count_atoms("ref_core") == 0:
+        print("[WARN] ref_core is empty after trimming.")
+python end
+
+Renames states, trims, uses only backbone, also makes ref trimmed same way
+
+super (conf_12 and (resi 19-43 and name P+O5'+C5'+C4'+C3'+O3'+O1P+O2P+OP1+OP2)), (ref_0010 and (resi 19-43 and name P+O5'+C5'+C4'+C3'+O3'+O1P+O2P+OP1+OP2)), cycles=5, transform=0
+
+Check super from code to check if same
+
