@@ -8,6 +8,9 @@ This project analyzes conformational flexibility in HIV-1 TAR RNA across multipl
 - Build analyzable CSV datasets for future peptide design work
 
 ## Repository Structure
+main=codes
+pdb=files and trimmed ones
+results=results and data
 
 ## 🛠️ Tools Used
 - **DSSR / x3DNA** – Backbone torsion extraction
